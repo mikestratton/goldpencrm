@@ -5,9 +5,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProspectController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/landing', function () {
     return view('landing');
-});
+})->name('landing');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
