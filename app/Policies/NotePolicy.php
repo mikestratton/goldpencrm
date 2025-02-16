@@ -29,7 +29,7 @@ class NotePolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class NotePolicy
      */
     public function update(User $user, Note $note): bool
     {
-        return false;
+        return $note->user()->is($user);
     }
 
     /**

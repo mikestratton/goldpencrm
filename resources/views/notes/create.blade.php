@@ -99,14 +99,14 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('prospects.store') }}" method="POST">
+                        <form action="{{ route('notes.store') }}" method="POST">
                             @csrf
 
                             <div class="mb-3">
-                                <label for="status" class="form-label">Status</label>
-                                <select name="status" id="status" class="form-select" required>
+                                <label for="status" class="form-label">Prospect</label>
+                                <select name="prospect_id" id="prospect_id" class="form-select">
                                     @foreach($prospects as $prospect)
-                                        <option value="{{ $prospect->id }}" {{ old('prospect') == $prospect->id ? 'selected' : '' }}>{{ $prospect->id }} {{ $prospect->name_first }} {{ $prospect->name_last }}</option>
+                                        <option value="{{ $prospect->id }}" {{ old('prospect') == $prospect->id ? 'selected' : '' }}>{{ $prospect->name_last }}, {{ $prospect->name_first }} (ID {{ $prospect->id }})</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -124,6 +124,16 @@
                             <div class="mb-3">
                                 <label for="phone" class="form-label">Type</label>
                                 <input type="text" name="type_of_contact" id="type_of_contact" class="form-control" placeholder="Phone, email, social media, etc." value="{{ old('type_of_contact') }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="status" class="form-label">Status</label>
+                                <select name="status" id="status" class="form-select" required>
+                                    <option value="4" {{ old('status') == 4 ? 'selected' : '' }}>Hot</option>
+                                    <option value="3" {{ old('status') == 3 ? 'selected' : '' }}>Warm</option>
+                                    <option value="2" {{ old('status') == 2 ? 'selected' : '' }}>Cold</option>
+                                    <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Dead</option>
+                                </select>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Create</button>

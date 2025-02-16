@@ -26,16 +26,42 @@ class NoteController extends Controller
      */
     public function create()
     {
-        $prospects = Prospect::all();
+        $prospects = Prospect::orderBy('name_last', 'asc')->get();
         return view('notes.create', compact('prospects'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreNoteRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'prospect_id' => 'required|exists:prospects,id',
+            'title' => 'required|string|max:255',
+            'body' => 'required|string',
+            'type_of_contact' => 'nullable|string|max:255',
+            'status' => 'required|integer|in:1,2,3,4', // Ensure status is valid
+        ]);
+
+        // Create a new Note instance and fill it with the validated data
+        $note = new Note();
+        $note->user_id = $request->user()->id;
+        $note->prospect_id = $validatedData['prospect_id'];
+        $note->title = $validatedData['title'];
+        $note->body = $validatedData['body'];
+        $note->type_of_contact = $validatedData['type_of_contact'];
+
+        // Save the note to the database
+        $note->save();
+
+        // Update the prospect table status
+        $prospect = Prospect::find($validatedData['prospect_id']);
+        $prospect->status = $validatedData['status'];
+        $prospect->save();
+
+        // Redirect to a success page or back to the form
+        return redirect()->route('notes.index')->with('success', 'Note created successfully.');
+
     }
 
     /**
