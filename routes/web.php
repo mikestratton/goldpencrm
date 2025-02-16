@@ -20,11 +20,11 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('prospects', ProspectController::class)
-    ->only(['index', 'store', 'edit', 'update', 'destroy'])
+    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
 Route::resource('notes', NoteController::class)
-    ->only(['index', 'store', 'edit', 'update', 'destroy'])
+    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

@@ -12,13 +12,14 @@ class Prospect extends Model
     use HasFactory;
 
     protected $fillable = [
-      'name_first',
-      'name_last',
-      'email',
-      'phone',
-      'fax',
-      'company',
-      'status'
+        'user_id',
+        'name_first',
+        'name_last',
+        'email',
+        'phone',
+        'fax',
+        'company',
+        'status'
     ];
 
     public function user(): BelongsTo

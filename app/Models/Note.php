@@ -12,6 +12,8 @@ class Note extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
+        'prospect_id',
         'title',
         'body',
         'type_of_contact',

@@ -19,35 +19,12 @@
             </style>
         @endif
 
-        <style>
-            #customers {
-                font-family: Arial, Helvetica, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
 
-            #customers td, #customers th {
-                border: 1px solid #ddd;
-                padding: 8px;
-            }
-
-            #customers tr:nth-child(even){background-color: #f2f2f2;}
-
-            #customers tr:hover {background-color: #ddd;}
-
-            #customers th {
-                padding-top: 12px;
-                padding-bottom: 12px;
-                text-align: left;
-                background-color: #4169E1;
-                color: white;
-            }
-        </style>
     </head>
     <x-app-layout>
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Notes') }}
+                {{ __('Create New Prospect') }}
             </h2>
         </x-slot>
 
@@ -55,33 +32,61 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        @if($notes)
-                            <table id="customers">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Prospect</th>
-                                    <th>Title</th>
-                                    <th>Note</th>
-                                    <th>Type</th>
-
-                                </tr>
-                                @foreach($notes as $note)
-                                    <tr>
-                                        <td>{{ $note->id }}</td>
-                                        <td>{{ $note->prospect->name_first}} {{ $note->prospect->name_last}}</td>
-                                        <td>{{ $note->title }}</td>
-                                        <td>{{ $note->body }}</td>
-                                        <td>{{ $note->type_of_contact }}</td>
-                                    </tr>
-                                @endforeach
-                            </table>
-
-
-
-                            {{ $notes->links() }}
-                        @else
-                            <p>No results found.</p>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         @endif
+
+                        <form action="{{ route('prospects.store') }}" method="POST">
+                            @csrf
+
+                            <div class="mb-3">
+                                <label for="name_first" class="form-label">First Name</label>
+                                <input type="text" name="name_first" id="name_first" class="form-control" value="{{ old('name_first') }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="name_last" class="form-label">Last Name</label>
+                                <input type="text" name="name_last" id="name_last" class="form-control" value="{{ old('name_last') }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="text" name="phone" id="phone" class="form-control" value="{{ old('phone') }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="fax" class="form-label">Fax</label>
+                                <input type="text" name="fax" id="fax" class="form-control" value="{{ old('fax') }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="company" class="form-label">Company</label>
+                                <input type="text" name="company" id="company" class="form-control" value="{{ old('company') }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="status" class="form-label">Status</label>
+                                <select name="status" id="status" class="form-select" required>
+                                    <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Dead</option>
+                                    <option value="2" {{ old('status') == 2 ? 'selected' : '' }}>Cold</option>
+                                    <option value="3" {{ old('status') == 3 ? 'selected' : '' }}>Warm</option>
+                                    <option value="4" {{ old('status') == 4 ? 'selected' : '' }}>Hot</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </form>
                     </div>
                 </div>
             </div>
