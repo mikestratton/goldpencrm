@@ -23,8 +23,8 @@ class NoteSeeder extends Seeder
                 'user_id' => User::inRandomOrder()->first()->id,
                 'prospect_id' => Prospect::inRandomOrder()->first()->id,
                 'title' => $faker->word,
-                'body' => $faker->paragraph,
-                'type_of_contact' => $faker->paragraph,
+                'body' => $faker->text($maxNbChars = 50),
+                'type_of_contact' => $faker->text($maxNbChars = 15),
             ]);
         }
     }

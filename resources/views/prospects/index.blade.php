@@ -92,7 +92,7 @@
                                             @if ($prospect->status === 4) HOT
                                             @elseif ($prospect->status === 3) WARM
                                             @elseif ($prospect->status === 2) COLD
-                                            @else DEAD
+                                            @else <span style="color:silver;">DEAD</span>
                                             @endif
                                         </td>
                                     </tr>
