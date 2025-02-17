@@ -15,7 +15,7 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                'custom-gold': '#cc9933', // Example custom color
+                'custom-gold': '#cc9933',
             },
             // fontSize: {
             //     'custom-20': ['20px', {lineHeight: '28px'}],
