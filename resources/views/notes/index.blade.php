@@ -71,6 +71,7 @@
                                     <th>Title</th>
                                     <th>Note</th>
                                     <th>Type</th>
+                                    <th>Pitch</th>
 
                                 </tr>
                                 @foreach($notes as $note)
@@ -80,6 +81,11 @@
                                         <td>{{ $note->title }}</td>
                                         <td>{{ $note->body }}</td>
                                         <td>{{ $note->type_of_contact }}</td>
+                                        <td>@if($note->ai_response)
+                                                {{ $note->ai_response->response }})
+                                            @else
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </table>

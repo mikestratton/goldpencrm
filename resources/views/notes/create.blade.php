@@ -112,6 +112,15 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="status" class="form-label">Pitch</label>
+                                <select name="ai_response_id" id="ai_response_id" class="form-select">
+                                    @foreach($pitches as $pitch)
+                                        <option value="{{ $pitch->id }}" {{ old('pitch') == $pitch->id ? 'selected' : '' }}>{{ $pitch->response }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="name_last" class="form-label">Title</label>
                                 <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required>
                             </div>

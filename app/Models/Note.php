@@ -15,6 +15,7 @@ class Note extends Model
     protected $fillable = [
         'user_id',
         'prospect_id',
+        'ai_response_id',
         'title',
         'body',
         'type_of_contact',
@@ -30,8 +31,8 @@ class Note extends Model
         return $this->belongsTo(Prospect::class);
     }
 
-    function pitch(): HasOne
+    function ai_response(): BelongsTo
     {
-        return $this->hasOne(Pitch::class);
+        return $this->belongsTo(AiResponse::class);
     }
 }

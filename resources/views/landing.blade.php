@@ -58,7 +58,7 @@
                             </nav>
                         @endif
                     </header>
-                    <h1 class="text-custom-gold" style="text-align:center; font-weight:800; font-size:30px;">Simplify the process for tracking interactions with potential & existing customers.</h1>
+                    <h1 class="text-custom-gold" style="text-align:center; font-weight:800; font-size:30px;">Boost your sales effortlessly! Our AI-powered CRM crafts personalized pitches, helping you connect with clients and close deals faster.</h1>
 
                     <main class="mt-6">
                         <img src="{{ asset('images/goldpen-display.png') }}" alt="GoldpenCRM">

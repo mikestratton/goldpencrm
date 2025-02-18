@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AiResponse;
 use App\Models\Note;
 use App\Http\Requests\StoreNoteRequest;
 use App\Http\Requests\UpdateNoteRequest;
@@ -27,7 +28,8 @@ class NoteController extends Controller
     public function create()
     {
         $prospects = Prospect::orderBy('name_last', 'asc')->get();
-        return view('notes.create', compact('prospects'));
+        $pitches = AiResponse::orderBy('response', 'asc')->get();
+        return view('notes.create', compact('prospects', 'pitches'));
     }
 
     /**
@@ -37,6 +39,7 @@ class NoteController extends Controller
     {
         $validatedData = $request->validate([
             'prospect_id' => 'required|exists:prospects,id',
+            'ai_response_id' => 'nullable|exists:ai_responses,id', // Changed from pitches to ai_responses
             'title' => 'required|string|max:255',
             'body' => 'required|string',
             'type_of_contact' => 'nullable|string|max:255',
@@ -50,6 +53,7 @@ class NoteController extends Controller
         $note->title = $validatedData['title'];
         $note->body = $validatedData['body'];
         $note->type_of_contact = $validatedData['type_of_contact'];
+        $note->ai_response_id = $validatedData['ai_response_id'] ?? null;
 
         // Save the note to the database
         $note->save();
