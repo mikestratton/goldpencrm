@@ -5,19 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Note extends Model
+class Pitch extends Model
 {
-    /** @use HasFactory<\Database\Factories\NoteFactory> */
+    /** @use HasFactory<\Database\Factories\PitchFactory> */
     use HasFactory;
 
     protected $fillable = [
         'user_id',
-        'prospect_id',
+        'note_id',
         'title',
         'body',
-        'type_of_contact',
     ];
 
     function user(): BelongsTo
@@ -25,13 +23,8 @@ class Note extends Model
         return $this->belongsTo(User::class);
     }
 
-    function prospect(): BelongsTo
+    function note(): BelongsTo
     {
-        return $this->belongsTo(Prospect::class);
-    }
-
-    function pitch(): HasOne
-    {
-        return $this->hasOne(Pitch::class);
+        return $this->belongsTo(Note::class);
     }
 }

@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Note::class);
     }
+
+    public function pitches(): HasMany
+    {
+        return $this->hasMany(Pitch::class);
+    }
 }

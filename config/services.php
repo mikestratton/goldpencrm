@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'openai' => [
+        'secret' => env('openai_secret'),
+    ],
+
 ];
