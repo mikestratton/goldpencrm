@@ -47,13 +47,13 @@
     <x-app-layout>
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Sales AI') }}
+                {{ __('Pitches') }}
                 <span style="float:right; margin-top:-8px;">
                 <a href="{{ route('prospects.create') }}" class="inline-flex items-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707L13 9.293V13a1 1 0 11-2 0V9.293L6.293 12.707a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414z" clip-rule="evenodd" />
                 </svg>
-                New Prospect
+                New Pitch
             </a>
             </span>
             </h2>
@@ -64,48 +64,27 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        {!! nl2br($result) !!}
-{{--                        @if($prospects)--}}
-{{--                            <table id="customers">--}}
-{{--                                <tr>--}}
-{{--                                    <th>ID</th>--}}
-{{--                                    <th>First</th>--}}
-{{--                                    <th>Last</th>--}}
-{{--                                    <th>Email</th>--}}
-{{--                                    <th>Phone</th>--}}
-{{--                                    <th>Status</th>--}}
-{{--                                </tr>--}}
-{{--                                @foreach($prospects as $prospect)--}}
-{{--                                    <tr>--}}
-{{--                                        <td>{{ $prospect->id }}</td>--}}
-{{--                                        <td>{{ $prospect->name_first }}</td>--}}
-{{--                                        <td>{{ $prospect->name_last }}</td>--}}
-{{--                                        <td>{{ $prospect->email }}</td>--}}
-{{--                                        <td>{{ $prospect->phone }}</td>--}}
-{{--                                        <td style="color:white;text-align:center;--}}
-{{--                                            @if ($prospect->status === 4) background:purple;--}}
-{{--                                            @elseif ($prospect->status === 3) background:orange;--}}
-{{--                                            @elseif ($prospect->status === 2) background:lightblue;--}}
-{{--                                            @else background:lightgrey;--}}
-{{--                                            @endif--}}
-{{--                                            ">--}}
 
-{{--                                            @if ($prospect->status === 4) HOT--}}
-{{--                                            @elseif ($prospect->status === 3) WARM--}}
-{{--                                            @elseif ($prospect->status === 2) COLD--}}
-{{--                                            @else <span style="color:silver;">DEAD</span>--}}
-{{--                                            @endif--}}
-{{--                                        </td>--}}
-{{--                                    </tr>--}}
-{{--                                @endforeach--}}
-{{--                            </table>--}}
+                        @if($pitches)
+                            <table id="customers">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Pitch</th>
+                                </tr>
+                                @foreach($pitches as $pitch)
+                                    <tr>
+                                        <td>{{ $pitch->id }}</td>
+                                        <td>{{ $pitch->response }}</td>
+                                    </tr>
+                                @endforeach
+                            </table>
 
 
 
-{{--                            {{ $prospects->links() }}--}}
-{{--                        @else--}}
-{{--                            <p>No results found.</p>--}}
-{{--                        @endif--}}
+
+                        @else
+                            <p>No results found.</p>
+                        @endif
                     </div>
                 </div>
             </div>

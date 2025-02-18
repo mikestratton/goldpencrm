@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PitchController;
+use App\Http\Controllers\SalesAiController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProspectController;
@@ -28,7 +30,7 @@ Route::resource('notes', NoteController::class)
     ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
-Route::get('/salesai', function(){
+/*Route::get('/salesai', function(){
     $response = Http::withToken(config('services.openai.secret'))
         ->post('https://api.openai.com/v1/chat/completions',
             [
@@ -46,5 +48,17 @@ Route::get('/salesai', function(){
             ])->json('choices.0.message.content');
 
     return view('salesai', ['response' => $response]);
+})->name('salesai');*/
+
+Route::get('/salesai', function () {
+    return view('salesai');
 })->name('salesai');
+
+Route::post('/salesai/process', [SalesAiController::class, 'process'])->name('salesai.process');
+Route::post('/salesai/save', [SalesAiController::class, 'save'])->name('salesai.save');
+
+Route::resource('pitches', PitchController::class)
+    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
+    ->middleware(['auth', 'verified']);
+
 require __DIR__.'/auth.php';

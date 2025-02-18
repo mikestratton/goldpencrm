@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('notes.index')" :active="request()->routeIs('notes.index')">
                         {{ __('Notes') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('pitches.index')" :active="request()->routeIs('pitches.index')">
+                        {{ __('Pitches') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('salesai')" :active="request()->routeIs('salesai')">
                         {{ __('Sales AI') }}
                     </x-nav-link>
@@ -85,6 +88,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('notes.index')" :active="request()->routeIs('notes.index')">
                 {{ __('Notes') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('pitches.index')" :active="request()->routeIs('pitches.index')">
+                {{ __('Pitches') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('salesai')" :active="request()->routeIs('salesai')">
                 {{ __('Sales AI') }}

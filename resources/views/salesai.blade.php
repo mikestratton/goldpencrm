@@ -20,6 +20,82 @@
         @endif
 
         <style>
+            form {
+                max-width: 600px;
+                margin: 20px auto;
+                padding: 30px;
+                border: 1px solid #e0e0e0;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: white;
+            }
+
+            .form-label {
+                font-weight: 600;
+                color: #333;
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            .form-control {
+                width: 100%;
+                padding: 14px 18px;
+                margin-bottom: 25px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                box-sizing: border-box;
+                font-size: 16px;
+                transition: border-color 0.3s ease;
+                resize: vertical;
+            }
+
+            .form-control:focus {
+                border-color: #007bff;
+                outline: none;
+                box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+            }
+
+            .btn-primary, .btn-success {
+                background-color: #007bff;
+                color: white;
+                padding: 14px 25px;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s ease;
+                display: inline-block;
+            }
+
+            .btn-primary:hover, .btn-success:hover {
+                background-color: #0056b3;
+            }
+
+            .btn-success {
+                background-color: #28a745;
+            }
+
+            .btn-success:hover {
+                background-color: #218838;
+            }
+
+            /* Improved spacing and layout */
+            .mb-3 {
+                margin-bottom: 20px;
+            }
+
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                form {
+                    width: 95%;
+                    padding: 25px;
+                }
+            }
+        </style>
+
+        <style>
+            /* Table Styles (as you had them) */
             #customers {
                 font-family: Arial, Helvetica, sans-serif;
                 border-collapse: collapse;
@@ -48,65 +124,34 @@
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ __('Sales AI') }}
-                <span style="float:right; margin-top:-8px;">
-                <a href="{{ route('prospects.create') }}" class="inline-flex items-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707L13 9.293V13a1 1 0 11-2 0V9.293L6.293 12.707a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414z" clip-rule="evenodd" />
-                </svg>
-                New Pitch
-            </a>
-            </span>
             </h2>
-
         </x-slot>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        <p>Prompt example: In 25 words or less. write a simple sales pitch:</p>
-                        {!! nl2br($response) !!}
-{{--                        @if($prospects)--}}
-{{--                            <table id="customers">--}}
-{{--                                <tr>--}}
-{{--                                    <th>ID</th>--}}
-{{--                                    <th>First</th>--}}
-{{--                                    <th>Last</th>--}}
-{{--                                    <th>Email</th>--}}
-{{--                                    <th>Phone</th>--}}
-{{--                                    <th>Status</th>--}}
-{{--                                </tr>--}}
-{{--                                @foreach($prospects as $prospect)--}}
-{{--                                    <tr>--}}
-{{--                                        <td>{{ $prospect->id }}</td>--}}
-{{--                                        <td>{{ $prospect->name_first }}</td>--}}
-{{--                                        <td>{{ $prospect->name_last }}</td>--}}
-{{--                                        <td>{{ $prospect->email }}</td>--}}
-{{--                                        <td>{{ $prospect->phone }}</td>--}}
-{{--                                        <td style="color:white;text-align:center;--}}
-{{--                                            @if ($prospect->status === 4) background:purple;--}}
-{{--                                            @elseif ($prospect->status === 3) background:orange;--}}
-{{--                                            @elseif ($prospect->status === 2) background:lightblue;--}}
-{{--                                            @else background:lightgrey;--}}
-{{--                                            @endif--}}
-{{--                                            ">--}}
+                        <form action="{{ route('salesai.process') }}" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="prompt" class="form-label">Enter Prompt:</label>
+                                <textarea name="prompt" id="prompt" class="form-control" rows="4" required>{{ old('prompt') }}</textarea>
+                            </div>
 
-{{--                                            @if ($prospect->status === 4) HOT--}}
-{{--                                            @elseif ($prospect->status === 3) WARM--}}
-{{--                                            @elseif ($prospect->status === 2) COLD--}}
-{{--                                            @else <span style="color:silver;">DEAD</span>--}}
-{{--                                            @endif--}}
-{{--                                        </td>--}}
-{{--                                    </tr>--}}
-{{--                                @endforeach--}}
-{{--                            </table>--}}
+                            <button type="submit" class="btn btn-primary">Get Response</button>
+                        </form>
 
-
-
-{{--                            {{ $prospects->links() }}--}}
-{{--                        @else--}}
-{{--                            <p>No results found.</p>--}}
-{{--                        @endif--}}
+                        @if (isset($response))
+                            <form action="{{ route('salesai.save') }}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="edited_response" class="form-label">Edited Response:</label>
+                                    <textarea name="edited_response" id="edited_response" class="form-control" rows="4" required>{{ $response }}</textarea>
+                                    <input type="hidden" name="original_prompt" value="{{ $original_prompt }}">
+                                </div>
+                                <button type="submit" class="btn btn-success">Save Response</button>
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -114,7 +159,7 @@
 
         <footer class="py-16 text-center text-sm text-black dark:text-white/70">
             Crafted with <span style="color:darkred; text-decoration:underline;">❤</span> by <a
-                href="https://mikestratton.net" target="_blank"><span style="color:darkred; text-decoration:underline;">mikestratton.net</span</a>
+                href="https://mikestratton.net" target="_blank"><span style="color:darkred; text-decoration:underline;">mikestratton.net</span></a>
         </footer>
     </x-app-layout>
 </html>

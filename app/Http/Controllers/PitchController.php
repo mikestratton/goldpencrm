@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AiResponse;
 use App\Models\Pitch;
 use App\Http\Requests\StorePitchRequest;
 use App\Http\Requests\UpdatePitchRequest;
@@ -13,7 +14,8 @@ class PitchController extends Controller
      */
     public function index()
     {
-        //
+        $pitches = AiResponse::get();
+        return view('salesai.index', compact('pitches'));
     }
 
     /**
