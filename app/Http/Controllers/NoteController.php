@@ -6,6 +6,7 @@ use App\Models\AiResponse;
 use App\Models\Note;
 use App\Http\Requests\StoreNoteRequest;
 use App\Http\Requests\UpdateNoteRequest;
+use App\Models\PitchStatistic;
 use App\Models\Prospect;
 use Illuminate\Http\Request;
 
@@ -62,6 +63,17 @@ class NoteController extends Controller
         $prospect = Prospect::find($validatedData['prospect_id']);
         $prospect->status = $validatedData['status'];
         $prospect->save();
+
+        // Update pitch statistics if ai_response_id is present
+        if ($validatedData['ai_response_id']) {
+            PitchStatistic::updateOrCreate(
+                ['ai_response_id' => $validatedData['ai_response_id']], // unique identifier
+                [
+                    'total_count' => \DB::raw('total_count + 1'),
+                    'total_status' => \DB::raw('total_status + ' . $validatedData['status'])
+                ]
+            );
+        }
 
         // Redirect to a success page or back to the form
         return redirect()->route('notes.index')->with('success', 'Note created successfully.');

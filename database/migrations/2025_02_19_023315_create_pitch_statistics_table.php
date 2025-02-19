@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('pitch_statistics', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('prospect_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('note_id')->constrained()->cascadeOnDelete();
             $table->foreignId('ai_response_id')->unique()->constrained()->cascadeOnDelete();
             $table->integer('total_count');
             $table->integer('total_status');

@@ -23,11 +23,13 @@
 
                         function drawChart() {
                             var data = google.visualization.arrayToDataTable([
-                                ['Year', 'Effectiveness'],
-                                ['Pitch 1', 65],
-                                ['Pitch 2', 23],
-                                ['Pitch 3', 72],
-                                ['Pitch 4', 88]
+                                ['Pitch Description', 'Effectiveness'],
+                                @foreach($stats as $stat)
+                                    ['#{{ $stat->id }} {{ Str::limit(ltrim($stat->aiResponse->response, '"'), 20) }}', {{ $stat->total_count > 0 ? number_format(($stat->total_status / ($stat->total_count * 4)) * 100, 1) : 0 }}],
+                                // ['Pitch 2', 23],
+                                // ['Pitch 3', 72],
+                                // ['Pitch 4', 88]
+                                @endforeach
                             ]);
 
                             var options = {
@@ -43,7 +45,6 @@
                         }
                     </script>
                     <br><br>
-
                     <div id="columnchart_material" style="width: auto; height: 500px;"></div>
                 </div>
             </div>
