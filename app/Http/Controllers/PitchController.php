@@ -6,15 +6,17 @@ use App\Models\AiResponse;
 use App\Models\Pitch;
 use App\Http\Requests\StorePitchRequest;
 use App\Http\Requests\UpdatePitchRequest;
+use Illuminate\Http\Request;
 
 class PitchController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pitches = AiResponse::get();
+        $perPage = $request->input('perPage', 20);
+        $pitches = AiResponse::where('user_id', auth()->id())->paginate($perPage);
         return view('salesai.index', compact('pitches'));
     }
 

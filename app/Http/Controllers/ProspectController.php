@@ -18,8 +18,8 @@ class ProspectController extends Controller
      */
     public function index(Request $request)
     {
-        $perPage = $request->input('perPage', 20); // Get the number of items per page from the request or use a default
-        $prospects = Prospect::paginate($perPage);
+        $perPage = $request->input('perPage', 20);
+        $prospects = Prospect::where('user_id', auth()->id())->paginate($perPage);
 
         return view('prospects.index', compact('prospects'));
     }

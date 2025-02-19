@@ -17,7 +17,7 @@ class NoteController extends Controller
     public function index(Request $request)
     {
         $perPage = $request->input('perPage', 20); // Get the number of items per page from the request or use a default
-        $notes = Note::paginate($perPage);
+        $notes = Note::where('user_id', auth()->id())->paginate($perPage);
 
         return view('notes.index', compact('notes'));
     }
@@ -27,8 +27,8 @@ class NoteController extends Controller
      */
     public function create()
     {
-        $prospects = Prospect::orderBy('name_last', 'asc')->get();
-        $pitches = AiResponse::orderBy('response', 'asc')->get();
+        $prospects = Prospect::where('user_id', auth()->id())->orderBy('name_last', 'asc')->get();
+        $pitches = AiResponse::where('user_id', auth()->id())->orderBy('response', 'asc')->get();
         return view('notes.create', compact('prospects', 'pitches'));
     }
 

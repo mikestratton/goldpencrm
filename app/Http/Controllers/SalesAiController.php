@@ -46,8 +46,10 @@ class SalesAiController extends Controller
             'edited_response' => 'required|string',
             'original_prompt' => 'required|string',
         ]);
-
+        $user_id = auth()->id();
+//        dd($user_id);
         AiResponse::create([
+            'user_id' => $user_id,
             'prompt' => $request->input('original_prompt'),
             'response' => $request->input('edited_response'),
         ]);
