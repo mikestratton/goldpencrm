@@ -9,12 +9,45 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h1 style="font-size:24px;">Simplify the process for tracking interactions with potential & existing customers in two easy steps.</h1>
+                    <h1 style="font-size:24px;">Simplify the process for tracking interactions with potential & existing customers in four easy steps.</h1>
                     <br>
                     1. Create a new prospect to store customer contact information, including the customers status in their willingness to purchase. <br>
-                    2. Create a note when you have made contact with a specific customer to capture details and update status.
+                    2. Create a note when you have made contact with a specific customer to capture details and update status.<br>
+                    3. Automatically create a new sales pitch with our AI sales pitch generator and then attach the pitch when it is used in a note. <br>
+                    4. Review your dashboard charts to view the effectiveness of your sales pitches.
+
+
+                    <script type="text/javascript">
+                        google.charts.load('current', {'packages':['bar']});
+                        google.charts.setOnLoadCallback(drawChart);
+
+                        function drawChart() {
+                            var data = google.visualization.arrayToDataTable([
+                                ['Year', 'Sales', 'Expenses', 'Profit'],
+                                ['2014', 1000, 400, 200],
+                                ['2015', 1170, 460, 250],
+                                ['2016', 660, 1120, 300],
+                                ['2017', 1030, 540, 350]
+                            ]);
+
+                            var options = {
+                                chart: {
+                                    title: 'Company Performance',
+                                    subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+                                }
+                            };
+
+                            var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+                            chart.draw(data, google.charts.Bar.convertOptions(options));
+                        }
+                    </script>
+                    <br><br>
+
+                    <div id="columnchart_material" style="width: auto; height: 500px;"></div>
                 </div>
             </div>
         </div>
     </div>
+
 </x-app-layout>
