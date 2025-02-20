@@ -47,11 +47,22 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Pitch</th>
+                                    <th>Actions</th>
                                 </tr>
                                 @foreach($pitches as $pitch)
                                     <tr>
                                         <td>{{ $pitch->id }}</td>
                                         <td>{{ $pitch->response }}</td>
+                                        <td>
+                                            <form class="small-form" action="{{ route('salesai.destroy', $pitch) }}" method="POST" class="inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                                                        onclick="return confirm('Are you sure you want to delete this pitch?')">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </table>

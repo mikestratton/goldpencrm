@@ -56,4 +56,15 @@ class SalesAiController extends Controller
 
         return redirect()->route('salesai')->with('success', 'Response saved!');
     }
+
+    public function destroy(AiResponse $aiResponse)
+    {
+        // Check if the user owns this response
+        if ($aiResponse->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $aiResponse->delete();
+        return redirect()->route('pitches.index')->with('success', 'Pitch deleted successfully!');
+    }
 }

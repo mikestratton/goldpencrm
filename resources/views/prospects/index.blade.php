@@ -76,6 +76,7 @@
                                             @endif
                                         </a>
                                     </th>
+                                    <th>Actions</th>
                                 </tr>
                                 @foreach($prospects as $prospect)
                                     <tr>
@@ -99,6 +100,16 @@
                                             @elseif ($prospect->status === 1) COLD
                                             @else <span style="color:silver;">DEAD</span>
                                             @endif
+                                        </td>
+                                        <td>
+                                            <form class="small-form" action="{{ route('prospects.destroy', $prospect) }}" method="POST" class="inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                                                        onclick="return confirm('Are you sure you want to delete this prospect?')">
+                                                    Delete
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

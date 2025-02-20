@@ -95,6 +95,12 @@ class ProspectController extends Controller
      */
     public function destroy(Prospect $prospect)
     {
-        //
+        // Check if the user owns this prospect
+        if ($prospect->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $prospect->delete();
+        return redirect()->route('prospects.index')->with('success', 'Prospect deleted successfully!');
     }
 }

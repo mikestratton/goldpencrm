@@ -38,6 +38,9 @@ Route::get('/salesai', function () {
 Route::post('/salesai/process', [SalesAiController::class, 'process'])->name('salesai.process');
 Route::post('/salesai/save', [SalesAiController::class, 'save'])->name('salesai.save');
 
+Route::delete('/salesai/{aiResponse}', [SalesAiController::class, 'destroy'])->name('salesai.destroy')
+    ->middleware(['auth', 'verified']);
+
 Route::resource('pitches', PitchController::class)
     ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);

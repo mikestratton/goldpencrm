@@ -48,7 +48,7 @@
                                     <th>Note</th>
                                     <th>Type</th>
                                     <th>Pitch</th>
-
+                                    <th>Actions</th>
                                 </tr>
                                 @foreach($notes as $note)
                                     <tr>
@@ -58,9 +58,19 @@
                                         <td>{{ $note->body }}</td>
                                         <td>{{ $note->type_of_contact }}</td>
                                         <td>@if($note->ai_response)
-                                                {{ $note->ai_response->response }})
+                                                {{ $note->ai_response->response }}
                                             @else
                                             @endif
+                                        </td>
+                                        <td>
+                                            <form class="small-form" action="{{ route('notes.destroy', $note) }}" method="POST" class="inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                                                        onclick="return confirm('Are you sure you want to delete this note?')">
+                                                    Delete
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
