@@ -19,9 +19,15 @@ class ProspectController extends Controller
     public function index(Request $request)
     {
         $perPage = $request->input('perPage', 20);
-        $prospects = Prospect::where('user_id', auth()->id())->paginate($perPage);
+        $sort = $request->input('sort', 'name_last');
+        $direction = $request->input('direction', 'asc');
 
-        return view('prospects.index', compact('prospects'));
+        $prospects = Prospect::where('user_id', auth()->id())
+            ->orderBy($sort, $direction)
+            ->paginate($perPage)
+            ->withQueryString();
+
+        return view('prospects.index', compact('prospects', 'sort', 'direction'));
     }
 
     /**
@@ -46,7 +52,7 @@ class ProspectController extends Controller
             'phone' => 'nullable|string|max:20',
             'fax' => 'nullable|string|max:20',
             'company' => 'nullable|string|max:255',
-            'status' => ['required', 'integer', Rule::in([1, 2, 3, 4])], // Enforce 1,2,3,4 as valid status.
+            'status' => ['required', 'integer', Rule::in([0, 1, 2, 3, 4])], // Added 0 to allowed values
         ]);
 
         $user_id = $request->user()->id;

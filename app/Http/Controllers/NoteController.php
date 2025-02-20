@@ -44,7 +44,7 @@ class NoteController extends Controller
             'title' => 'required|string|max:255',
             'body' => 'required|string',
             'type_of_contact' => 'nullable|string|max:255',
-            'status' => 'required|integer|in:1,2,3,4', // Ensure status is valid
+            'status' => 'required|integer|in:0,1,2,3,4', // Ensure status is valid
         ]);
 
         // Create a new Note instance and fill it with the validated data

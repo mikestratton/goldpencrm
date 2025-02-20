@@ -23,9 +23,10 @@
 
                         function drawChart() {
                             var data = google.visualization.arrayToDataTable([
-                                ['Pitch Description', 'Effectiveness'],
+                                ['Pitch ID & Description', 'Effectiveness'],
                                 @foreach($stats as $stat)
-                                    ['#{{ $stat->id }} {{ Str::limit(ltrim($stat->aiResponse->response, '"'), 20) }}', {{ $stat->total_count > 0 ? number_format(($stat->total_status / ($stat->total_count * 4)) * 100, 1) : 0 }}],
+                                    ['#{{ $stat->id }} {{ Str::limit(ltrim($stat->aiResponse->response, '"'), 20) }}',
+                                    {{ $stat->total_count > 0 ? number_format(($stat->total_status / ($stat->total_count * 4)) * 100, 1) : 0 }}],
                                 // ['Pitch 2', 23],
                                 // ['Pitch 3', 72],
                                 // ['Pitch 4', 88]
@@ -35,7 +36,7 @@
                             var options = {
                                 chart: {
                                     title: 'Pitch Performance',
-                                    subtitle: 'Pitch performance when used on notes.',
+                                    subtitle: 'Effectiveness of a pitch when used on a prospect(note).',
                                 }
                             };
 

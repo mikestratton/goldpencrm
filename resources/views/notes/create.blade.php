@@ -82,8 +82,9 @@
                                 <select name="status" id="status" class="form-select" required>
                                     <option value="4" {{ old('status') == 4 ? 'selected' : '' }}>Hot</option>
                                     <option value="3" {{ old('status') == 3 ? 'selected' : '' }}>Warm</option>
-                                    <option value="2" {{ old('status') == 2 ? 'selected' : '' }}>Cold</option>
-                                    <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Dead</option>
+                                    <option value="2" {{ old('status') == 2 ? 'selected' : '' }}>Neutral</option>
+                                    <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Cold</option>
+                                    <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Dead</option>
                                 </select>
                             </div>
 

@@ -46,10 +46,36 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>First</th>
-                                    <th>Last</th>
+                                    <th>
+                                        Last
+                                        <a href="{{ route('prospects.index', ['sort' => 'name_last', 'direction' => ($sort === 'name_last' && $direction === 'asc') ? 'desc' : 'asc']) }}" class="text-white hover:text-custom-gold">
+                                            @if($sort === 'name_last')
+                                                @if($direction === 'asc')
+                                                    ↑
+                                                @else
+                                                    ↓
+                                                @endif
+                                            @else
+                                                ↕
+                                            @endif
+                                        </a>
+                                    </th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Status</th>
+                                    <th>
+                                        Status
+                                        <a href="{{ route('prospects.index', ['sort' => 'status', 'direction' => ($sort === 'status' && $direction === 'asc') ? 'desc' : 'asc']) }}" class="text-white hover:text-custom-gold">
+                                            @if($sort === 'status')
+                                                @if($direction === 'asc')
+                                                    ↑
+                                                @else
+                                                    ↓
+                                                @endif
+                                            @else
+                                                ↕
+                                            @endif
+                                        </a>
+                                    </th>
                                 </tr>
                                 @foreach($prospects as $prospect)
                                     <tr>
@@ -61,14 +87,16 @@
                                         <td style="color:white;text-align:center;
                                             @if ($prospect->status === 4) background:purple;
                                             @elseif ($prospect->status === 3) background:orange;
-                                            @elseif ($prospect->status === 2) background:lightblue;
+                                            @elseif ($prospect->status === 2) background:forestgreen;
+                                            @elseif ($prospect->status === 1) background:lightblue;
                                             @else background:lightgrey;
                                             @endif
                                             ">
 
                                             @if ($prospect->status === 4) HOT
                                             @elseif ($prospect->status === 3) WARM
-                                            @elseif ($prospect->status === 2) COLD
+                                            @elseif ($prospect->status === 2) NEUTRAL
+                                            @elseif ($prospect->status === 1) COLD
                                             @else <span style="color:silver;">DEAD</span>
                                             @endif
                                         </td>

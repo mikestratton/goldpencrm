@@ -93,3 +93,12 @@ form {
         padding: 25px;
     }
 }
+
+th a {
+    display: inline-block;
+    margin-left: 5px;
+    text-decoration: none;
+}
+th a:hover {
+    color: #fff;
+}
