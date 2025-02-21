@@ -6,7 +6,6 @@
 }
 
 #customers td, #customers th {
-    border: 1px solid #ddd;
     padding: 8px;
 }
 
@@ -35,9 +34,8 @@ form {
 
 .small-form {
     max-width: 600px; /* Using the larger max-width from the first style */
-    margin: 0px;
-    padding: 0px; /* Using the larger padding from the first style */
-    border: 1px solid #e0e0e0;
+    margin: 0 auto;
+    padding: 0; /* Using the larger padding from the first style */
     border-radius: 10px; /* Using the larger border radius from the first style */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Using the more pronounced shadow from the first style */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

@@ -47,17 +47,18 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Pitch</th>
-                                    <th>Actions</th>
+                                    <th>Delete</th>
                                 </tr>
                                 @foreach($pitches as $pitch)
                                     <tr>
-                                        <td>{{ $pitch->id }}</td>
-                                        <td>{{ $pitch->response }}</td>
-                                        <td class="flex gap-2">
+                                        <td>
                                             <a href="{{ route('salesai.edit', $pitch) }}"
                                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
-                                                Edit
+                                                {{ $pitch->id }}
                                             </a>
+                                        </td>
+                                        <td>{{ $pitch->response }}</td>
+                                        <td class="flex gap-2">
                                             <form class="small-form" action="{{ route('salesai.destroy', $pitch) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('DELETE')

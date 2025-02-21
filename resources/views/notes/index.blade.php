@@ -48,11 +48,16 @@
                                     <th class="hidden lg:table-cell">Note</th>
                                     <th class="hidden sm:table-cell">Type</th>
                                     <th class="hidden xl:table-cell">Pitch</th>
-                                    <th>Actions</th>
+                                    <th>Delete</th>
                                 </tr>
                                 @foreach($notes as $note)
                                     <tr>
-                                        <td>{{ $note->id }}</td>
+                                        <td>
+                                            <a href="{{ route('notes.edit', $note) }}"
+                                               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
+                                                {{ $note->id }}
+                                            </a>
+                                        </td>
                                         <td class="hidden sm:table-cell">{{ $note->prospect->name_first}} {{ $note->prospect->name_last}}</td>
                                         <td class="hidden md:table-cell">{{ $note->title }}</td>
                                         <td class="hidden lg:table-cell">{{ $note->body }}</td>
@@ -63,16 +68,12 @@
                                             @endif
                                         </td>
                                         <td class="flex gap-2">
-                                            <a href="{{ route('notes.edit', $note) }}" 
-                                               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
-                                                Edit
-                                            </a>
                                             <form class="small-form" action="{{ route('notes.destroy', $note) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
                                                         onclick="return confirm('Are you sure you want to delete this note?')">
-                                                    Delete
+                                                    x
                                                 </button>
                                             </form>
                                         </td>

@@ -47,16 +47,21 @@
                                     <th>ID</th>
                                     <th class="hidden sm:table-cell">First</th>
                                     <th class="hidden sm:table-cell">Last</th>
+                                    <th class="hidden sm:table-cell">Company</th>
                                     <th class="hidden lg:table-cell">Email</th>
                                     <th class="hidden lg:table-cell">Phone</th>
                                     <th>Status</th>
-                                    <th>Actions</th>
+                                    <th>Delete</th>
                                 </tr>
                                 @foreach($prospects as $prospect)
                                     <tr>
-                                        <td>{{ $prospect->id }}</td>
+                                        <td><a href="{{ route('prospects.edit', $prospect) }}"
+                                               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
+                                            {{$prospect->id}}
+                                            </a></td>
                                         <td class="hidden sm:table-cell">{{ $prospect->name_first }}</td>
                                         <td class="hidden sm:table-cell">{{ $prospect->name_last }}</td>
+                                        <td class="hidden sm:table-cell">{{ $prospect->company }}</td>
                                         <td class="hidden lg:table-cell">{{ $prospect->email }}</td>
                                         <td class="hidden lg:table-cell">{{ $prospect->phone }}</td>
                                         <td style="color:white;text-align:center;
@@ -75,16 +80,12 @@
                                             @endif
                                         </td>
                                         <td class="flex gap-2">
-                                            <a href="{{ route('prospects.edit', $prospect) }}"
-                                               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
-                                                Edit
-                                            </a>
                                             <form class="small-form" action="{{ route('prospects.destroy', $prospect) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
                                                         onclick="return confirm('Are you sure you want to delete this prospect?')">
-                                                    Delete
+                                                    x
                                                 </button>
                                             </form>
                                         </td>
