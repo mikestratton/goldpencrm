@@ -5,11 +5,11 @@
                 <div class="bg-white dark:bg-[#101a23] overflow-hidden shadow-sm sm:rounded-lg border border-gray-200 dark:border-[#314f68]">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         <h2 class="text-2xl font-bold mb-4">Edit Prospect</h2>
-                        
+
                         <form method="POST" action="{{ route('prospects.update', $prospect) }}">
                             @csrf
                             @method('PUT')
-                            
+
                             <div class="mb-4">
                                 <label for="name_first" class="block text-sm font-medium text-gray-700 dark:text-gray-200">First Name</label>
                                 <input type="text" name="name_first" id="name_first" value="{{ old('name_first', $prospect->name_first) }}"
@@ -48,22 +48,22 @@
 
                             <div class="mb-4">
                                 <label for="status" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Status</label>
-                                <select name="status" id="status" 
+                                <select name="status" id="status"
                                     class="mt-1 block w-full rounded-md border-gray-300 dark:border-[#314f68] dark:bg-[#223749] shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                    <option value="0" {{ $prospect->status == 0 ? 'selected' : '' }}>DEAD</option>
-                                    <option value="1" {{ $prospect->status == 1 ? 'selected' : '' }}>COLD</option>
-                                    <option value="2" {{ $prospect->status == 2 ? 'selected' : '' }}>NEUTRAL</option>
-                                    <option value="3" {{ $prospect->status == 3 ? 'selected' : '' }}>WARM</option>
                                     <option value="4" {{ $prospect->status == 4 ? 'selected' : '' }}>HOT</option>
+                                    <option value="3" {{ $prospect->status == 3 ? 'selected' : '' }}>WARM</option>
+                                    <option value="2" {{ $prospect->status == 2 ? 'selected' : '' }}>NEUTRAL</option>
+                                    <option value="1" {{ $prospect->status == 1 ? 'selected' : '' }}>COLD</option>
+                                    <option value="0" {{ $prospect->status == 0 ? 'selected' : '' }}>DEAD</option>
                                 </select>
                             </div>
 
                             <div class="flex gap-4">
-                                <button type="submit" 
+                                <button type="submit"
                                     class="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                                     Update Prospect
                                 </button>
-                                <a href="{{ route('prospects.index') }}" 
+                                <a href="{{ route('prospects.index') }}"
                                     class="inline-flex justify-center rounded-md border border-gray-300 dark:border-[#314f68] bg-white dark:bg-[#223749] py-2 px-4 text-sm font-medium text-gray-700 dark:text-gray-200 shadow-sm hover:bg-gray-50 dark:hover:bg-[#314f68] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                                     Cancel
                                 </a>
@@ -74,4 +74,4 @@
             </div>
         </div>
     </div>
-</x-app-layout> 
+</x-app-layout>

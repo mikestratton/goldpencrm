@@ -61,6 +61,7 @@
                                         </a>
                                     </th>
                                     <th>Email</th>
+                                    <th>Company</th>
                                     <th>Phone</th>
                                     <th>
                                         Status
@@ -83,6 +84,7 @@
                                         <td>{{ $prospect->id }}</td>
                                         <td>{{ $prospect->name_first }}</td>
                                         <td>{{ $prospect->name_last }}</td>
+                                        <td>{{ $prospect->company }}</td>
                                         <td>{{ $prospect->email }}</td>
                                         <td>{{ $prospect->phone }}</td>
                                         <td style="color:white;text-align:center;

@@ -117,10 +117,18 @@ class NoteController extends Controller
             'title' => 'required|string|max:255',
             'body' => 'required|string',
             'type_of_contact' => 'required|string|max:255',
-            'ai_response_id' => 'nullable|exists:ai_responses,id'
+            'ai_response_id' => 'nullable|exists:ai_responses,id',
+            'status' => 'required|integer|min:0|max:4'  // Add status validation
         ]);
 
+        // Update the note
         $note->update($validated);
+
+        // Update the prospect's status
+        $prospect = Prospect::findOrFail($validated['prospect_id']);
+        if ($prospect->user_id === auth()->id()) {
+            $prospect->update(['status' => $validated['status']]);
+        }
 
         return redirect()->route('notes.index')
             ->with('success', 'Note updated successfully!');

@@ -25,7 +25,7 @@
                             var data = google.visualization.arrayToDataTable([
                                 ['Pitch ID & Description', 'Effectiveness'],
                                 @foreach($stats as $stat)
-                                    ['ID:{{ $stat->id }} {{ Str::limit(ltrim($stat->aiResponse->response, '"'), 15) }}', {{ $stat->total_count > 0 ? number_format(($stat->total_status / ($stat->total_count * 4)) * 100, 1) : 0 }}],
+                                    ['ID:{{ $stat->ai_response_id }} {{ Str::limit(ltrim($stat->aiResponse->response, '"'), 15) }}', {{ $stat->total_count > 0 ? number_format(($stat->total_status / ($stat->total_count * 4)) * 100, 1) : 0 }}],
                                 // ['Pitch 2', 23],
                                 // ['Pitch 3', 72],
                                 // ['Pitch 4', 88]
