@@ -79,15 +79,38 @@ class ProspectController extends Controller
      */
     public function edit(Prospect $prospect)
     {
-        //
+        // Check if the user owns this prospect
+        if ($prospect->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        return view('prospects.edit', compact('prospect'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProspectRequest $request, Prospect $prospect)
+    public function update(Request $request, Prospect $prospect)
     {
-        //
+        // Check if the user owns this prospect
+        if ($prospect->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $validated = $request->validate([
+            'name_first' => 'required|string|max:255',
+            'name_last' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:255',
+            'fax' => 'nullable|string|max:255',
+            'company' => 'nullable|string|max:255',
+            'status' => 'required|integer|min:0|max:4',
+        ]);
+
+        $prospect->update($validated);
+
+        return redirect()->route('prospects.index')
+            ->with('success', 'Prospect updated successfully!');
     }
 
     /**

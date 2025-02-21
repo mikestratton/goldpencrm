@@ -67,4 +67,30 @@ class SalesAiController extends Controller
         $aiResponse->delete();
         return redirect()->route('pitches.index')->with('success', 'Pitch deleted successfully!');
     }
+
+    public function edit(AiResponse $pitch)
+    {
+        if ($pitch->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        return view('salesai.edit', compact('pitch'));
+    }
+
+    public function update(Request $request, AiResponse $pitch)
+    {
+        if ($pitch->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $validated = $request->validate([
+            'prompt' => 'required|string',
+            'response' => 'required|string'
+        ]);
+
+        $pitch->update($validated);
+
+        return redirect()->route('salesai')
+            ->with('success', 'Pitch updated successfully!');
+    }
 }

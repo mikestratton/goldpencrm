@@ -45,4 +45,7 @@ Route::resource('pitches', PitchController::class)
     ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
     ->middleware(['auth', 'verified']);
 
+Route::get('/salesai/{pitch}/edit', [SalesAiController::class, 'edit'])->name('salesai.edit');
+Route::put('/salesai/{pitch}', [SalesAiController::class, 'update'])->name('salesai.update');
+
 require __DIR__.'/auth.php';

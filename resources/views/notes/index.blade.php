@@ -62,13 +62,17 @@
                                             @else
                                             @endif
                                         </td>
-                                        <td>
+                                        <td class="flex gap-2">
+                                            <a href="{{ route('notes.edit', $note) }}"
+                                               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
+                                                Edit
+                                            </a>
                                             <form class="small-form" action="{{ route('notes.destroy', $note) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
                                                         onclick="return confirm('Are you sure you want to delete this note?')">
-                                                    Delete
+                                                    x
                                                 </button>
                                             </form>
                                         </td>

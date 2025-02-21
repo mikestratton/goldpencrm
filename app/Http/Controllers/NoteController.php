@@ -93,15 +93,37 @@ class NoteController extends Controller
      */
     public function edit(Note $note)
     {
-        //
+        if ($note->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $prospects = Prospect::where('user_id', auth()->id())->get();
+        $pitches = AiResponse::where('user_id', auth()->id())->get();
+
+        return view('notes.edit', compact('note', 'prospects', 'pitches'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateNoteRequest $request, Note $note)
+    public function update(Request $request, Note $note)
     {
-        //
+        if ($note->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $validated = $request->validate([
+            'prospect_id' => 'required|exists:prospects,id',
+            'title' => 'required|string|max:255',
+            'body' => 'required|string',
+            'type_of_contact' => 'required|string|max:255',
+            'ai_response_id' => 'nullable|exists:ai_responses,id'
+        ]);
+
+        $note->update($validated);
+
+        return redirect()->route('notes.index')
+            ->with('success', 'Note updated successfully!');
     }
 
     /**

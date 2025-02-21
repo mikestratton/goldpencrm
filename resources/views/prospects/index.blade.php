@@ -101,13 +101,17 @@
                                             @else <span style="color:silver;">DEAD</span>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td class="flex gap-2">
+                                            <a href="{{ route('prospects.edit', $prospect) }}"
+                                               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
+                                                Edit
+                                            </a>
                                             <form class="small-form" action="{{ route('prospects.destroy', $prospect) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
                                                         onclick="return confirm('Are you sure you want to delete this prospect?')">
-                                                    Delete
+                                                    x
                                                 </button>
                                             </form>
                                         </td>
