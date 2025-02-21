@@ -36,10 +36,11 @@ form {
     max-width: 600px; /* Using the larger max-width from the first style */
     margin: 0 auto;
     padding: 0; /* Using the larger padding from the first style */
-    border-radius: 10px; /* Using the larger border radius from the first style */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Using the more pronounced shadow from the first style */
+    border: none !important;
+    border-radius: 0 !important; /* Using the larger border radius from the first style */
+    box-shadow: none !important; /* Using the more pronounced shadow from the first style */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: white;
+    background: none !important;
 }
 
 .form-label {
@@ -111,4 +112,51 @@ th a {
 }
 th a:hover {
     color: #fff;
+}
+
+
+td span {
+    display:block;
+    text-align:center;
+    margin:0 auto;
+}
+
+.span-purple {
+    padding: 3px 5px;
+    border-radius: 3px;
+    color: white;
+    text-align: center;
+    background: purple;
+}
+
+.span-orange {
+    padding: 3px 5px;
+    border-radius: 3px;
+    color: white;
+    text-align: center;
+    background: orange;
+}
+
+.span-green {
+    padding: 3px 5px;
+    border-radius: 3px;
+    color: white;
+    text-align: center;
+    background: forestgreen;
+}
+
+.span-lightblue {
+    padding: 3px 5px;
+    border-radius: 3px;
+    color: white;
+    text-align: center;
+    background: lightblue;
+}
+
+.span-lightgray {
+    padding: 3px 5px;
+    border-radius: 3px;
+    color: white;
+    text-align: center;
+    background: lightgray;
 }

@@ -24,20 +24,20 @@
     <x-app-layout>
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Prospects') }}
+                {{ __('Contacts') }}
                 <span style="float:right; margin-top:-8px;">
                 <a href="{{ route('prospects.create') }}" class="inline-flex items-center px-4 py-2 bg-green-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition ease-in-out duration-150">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707L13 9.293V13a1 1 0 11-2 0V9.293L6.293 12.707a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414z" clip-rule="evenodd" />
                 </svg>
-                New Prospect
+                New Contact
             </a>
             </span>
             </h2>
 
         </x-slot>
 
-        <div class="py-12">
+        <div class="py-4">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -46,11 +46,29 @@
                                 <tr>
                                     <th>ID</th>
                                     <th class="hidden sm:table-cell">First</th>
-                                    <th class="hidden sm:table-cell">Last</th>
+                                    <th class="hidden sm:table-cell">
+                                        <a href="{{ route('prospects.index', ['sort' => 'name_last', 'direction' => $direction === 'asc' ? 'desc' : 'asc']) }}" class="flex items-center">
+                                            Last
+                                            @if($sort === 'name_last')
+                                                {!! $direction === 'asc' ? '↑' : '↓' !!}
+                                            @else
+                                                <span class="text-gray-400 ml-1">↕</span>
+                                            @endif
+                                        </a>
+                                    </th>
                                     <th class="hidden sm:table-cell">Company</th>
                                     <th class="hidden lg:table-cell">Email</th>
                                     <th class="hidden lg:table-cell">Phone</th>
-                                    <th>Status</th>
+                                    <th>
+                                        <a href="{{ route('prospects.index', ['sort' => 'status', 'direction' => $direction === 'asc' ? 'desc' : 'asc']) }}" class="flex items-center">
+                                            Status
+                                            @if($sort === 'status')
+                                                {!! $direction === 'asc' ? '↑' : '↓' !!}
+                                            @else
+                                                <span class="text-gray-400 ml-1">↕</span>
+                                            @endif
+                                        </a>
+                                    </th>
                                     <th>Delete</th>
                                 </tr>
                                 @foreach($prospects as $prospect)
@@ -64,20 +82,21 @@
                                         <td class="hidden sm:table-cell">{{ $prospect->company }}</td>
                                         <td class="hidden lg:table-cell">{{ $prospect->email }}</td>
                                         <td class="hidden lg:table-cell">{{ $prospect->phone }}</td>
-                                        <td style="color:white;text-align:center;
-                                            @if ($prospect->status === 4) background:purple;
-                                            @elseif ($prospect->status === 3) background:orange;
-                                            @elseif ($prospect->status === 2) background:forestgreen;
-                                            @elseif ($prospect->status === 1) background:lightblue;
-                                            @else background:lightgrey;
-                                            @endif
-                                            ">
-                                            @if ($prospect->status === 4) HOT
-                                            @elseif ($prospect->status === 3) WARM
-                                            @elseif ($prospect->status === 2) NEUTRAL
-                                            @elseif ($prospect->status === 1) COLD
-                                            @else <span style="color:silver;">DEAD</span>
-                                            @endif
+                                        <td class="text-center">
+                                            <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-semibold tracking-wide
+                                                @if ($prospect->status === 4) span-purple
+                                                @elseif ($prospect->status === 3) span-orange
+                                                @elseif ($prospect->status === 2) span-green
+                                                @elseif ($prospect->status === 1) span-lightblue
+                                                @else span-lightgray
+                                                @endif">
+                                                @if ($prospect->status === 4) <span class="span-purple">HOT</span>
+                                                @elseif ($prospect->status === 3) WARM
+                                                @elseif ($prospect->status === 2) NEUTRAL
+                                                @elseif ($prospect->status === 1) COLD
+                                                @else DEAD
+                                                @endif
+                                            </span>
                                         </td>
                                         <td class="flex gap-2">
                                             <form class="small-form" action="{{ route('prospects.destroy', $prospect) }}" method="POST" class="inline">

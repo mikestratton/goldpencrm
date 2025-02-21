@@ -19,106 +19,6 @@
             </style>
         @endif
 
-        <style>
-            /*form {*/
-            /*    max-width: 600px;*/
-            /*    margin: 20px auto;*/
-            /*    padding: 30px;*/
-            /*    border: 1px solid #e0e0e0;*/
-            /*    border-radius: 10px;*/
-            /*    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);*/
-            /*    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
-            /*    background-color: white;*/
-            /*}*/
-
-            /*.form-label {*/
-            /*    font-weight: 600;*/
-            /*    color: #333;*/
-            /*    display: block;*/
-            /*    margin-bottom: 8px;*/
-            /*}*/
-
-            /*.form-control {*/
-            /*    width: 100%;*/
-            /*    padding: 14px 18px;*/
-            /*    margin-bottom: 25px;*/
-            /*    border: 1px solid #ccc;*/
-            /*    border-radius: 8px;*/
-            /*    box-sizing: border-box;*/
-            /*    font-size: 16px;*/
-            /*    transition: border-color 0.3s ease;*/
-            /*    resize: vertical;*/
-            /*}*/
-
-            /*.form-control:focus {*/
-            /*    border-color: #007bff;*/
-            /*    outline: none;*/
-            /*    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);*/
-            /*}*/
-
-            /*.btn-primary, .btn-success {*/
-            /*    background-color: #007bff;*/
-            /*    color: white;*/
-            /*    padding: 14px 25px;*/
-            /*    border: none;*/
-            /*    border-radius: 8px;*/
-            /*    cursor: pointer;*/
-            /*    font-size: 16px;*/
-            /*    transition: background-color 0.3s ease;*/
-            /*    display: inline-block;*/
-            /*}*/
-
-            /*.btn-primary:hover, .btn-success:hover {*/
-            /*    background-color: #0056b3;*/
-            /*}*/
-
-            /*.btn-success {*/
-            /*    background-color: #28a745;*/
-            /*}*/
-
-            /*.btn-success:hover {*/
-            /*    background-color: #218838;*/
-            /*}*/
-
-            /*!* Improved spacing and layout *!*/
-            /*.mb-3 {*/
-            /*    margin-bottom: 20px;*/
-            /*}*/
-
-            /*!* Responsive adjustments *!*/
-            /*@media (max-width: 768px) {*/
-            /*    form {*/
-            /*        width: 95%;*/
-            /*        padding: 25px;*/
-            /*    }*/
-            /*}*/
-        </style>
-
-        <style>
-            /* Table Styles (as you had them) */
-            #customers {
-                font-family: Arial, Helvetica, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
-
-            #customers td, #customers th {
-                border: 1px solid #ddd;
-                padding: 8px;
-            }
-
-            #customers tr:nth-child(even){background-color: #f2f2f2;}
-
-            #customers tr:hover {background-color: #ddd;}
-
-            #customers th {
-                padding-top: 12px;
-                padding-bottom: 12px;
-                text-align: left;
-                background-color: #4169E1;
-                color: white;
-            }
-        </style>
     </head>
     <x-app-layout>
         <x-slot name="header">
@@ -127,7 +27,7 @@
             </h2>
         </x-slot>
 
-        <div class="py-12">
+        <div class="py-4">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
