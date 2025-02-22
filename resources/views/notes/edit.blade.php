@@ -62,11 +62,11 @@
                                 <label for="status" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Prospect Status</label>
                                 <select name="status" id="status" required
                                     class="mt-1 block w-full rounded-md border-gray-300 dark:border-[#314f68] dark:bg-[#223749] shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                    <option value="4" {{ $prospect->status == 4 ? 'selected' : '' }}>HOT</option>
-                                    <option value="3" {{ $prospect->status == 3 ? 'selected' : '' }}>WARM</option>
-                                    <option value="2" {{ $prospect->status == 2 ? 'selected' : '' }}>NEUTRAL</option>
-                                    <option value="1" {{ $prospect->status == 1 ? 'selected' : '' }}>COLD</option>
-                                    <option value="0" {{ $prospect->status == 0 ? 'selected' : '' }}>DEAD</option>
+                                    <option value="4" {{ $prospect->status == 4 ? 'selected' : '' }}>Hot</option>
+                                    <option value="3" {{ $prospect->status == 3 ? 'selected' : '' }}>Warm</option>
+                                    <option value="2" {{ $prospect->status == 2 ? 'selected' : '' }}>Neutral</option>
+                                    <option value="1" {{ $prospect->status == 1 ? 'selected' : '' }}>Cold</option>
+                                    <option value="0" {{ $prospect->status == 0 ? 'selected' : '' }}>Inactive</option>
                                 </select>
                             </div>
 

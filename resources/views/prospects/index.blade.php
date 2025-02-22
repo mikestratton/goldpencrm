@@ -82,21 +82,21 @@
                                         <td class="hidden sm:table-cell">{{ $prospect->company }}</td>
                                         <td class="hidden lg:table-cell">{{ $prospect->email }}</td>
                                         <td class="hidden lg:table-cell">{{ $prospect->phone }}</td>
-                                        <td class="text-center">
-                                            <span class="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-semibold tracking-wide
+                                        <td class="text-center
+
                                                 @if ($prospect->status === 4) span-purple
                                                 @elseif ($prospect->status === 3) span-orange
                                                 @elseif ($prospect->status === 2) span-green
                                                 @elseif ($prospect->status === 1) span-lightblue
                                                 @else span-lightgray
                                                 @endif">
-                                                @if ($prospect->status === 4) <span class="span-purple">HOT</span>
-                                                @elseif ($prospect->status === 3) WARM
-                                                @elseif ($prospect->status === 2) NEUTRAL
-                                                @elseif ($prospect->status === 1) COLD
-                                                @else DEAD
+                                                @if ($prospect->status === 4) Hot
+                                                @elseif ($prospect->status === 3) Warm
+                                                @elseif ($prospect->status === 2) Neutral
+                                                @elseif ($prospect->status === 1) Cold
+                                                @else Inactive
                                                 @endif
-                                            </span>
+
                                         </td>
                                         <td class="flex gap-2">
                                             <form class="small-form" action="{{ route('prospects.destroy', $prospect) }}" method="POST" class="inline">

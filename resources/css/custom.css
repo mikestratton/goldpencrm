@@ -7,6 +7,7 @@
 
 #customers td, #customers th {
     padding: 8px;
+    border-right: white thin solid;
 }
 
 #customers tr:nth-child(even){background-color: #f2f2f2;}
@@ -17,8 +18,9 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #4169E1;
+    background-color: rgb(59 130 246);
     color: white;
+    border-right: white thin solid;
 }
 
 form {
@@ -122,41 +124,56 @@ td span {
 }
 
 .span-purple {
-    padding: 3px 5px;
-    border-radius: 3px;
-    color: white;
+    padding: 6px 10px;
+    /*border-radius: 6px;*/
+    color: #4a235a; /* Darker text for contrast */
     text-align: center;
-    background: purple;
+    background: linear-gradient(135deg, #d8b4fe, #c084fc); /* Pastel purple gradient */
+    /*box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);*/
+    font-size: 0.9em;
+    font-weight: 500;
 }
 
 .span-orange {
-    padding: 3px 5px;
-    border-radius: 3px;
-    color: white;
+    padding: 6px 10px;
+    /*border-radius: 6px;*/
+    color: #a0522d; /* Darker text for contrast */
     text-align: center;
-    background: orange;
+    background: linear-gradient(135deg, #ffe0b2, #ffcc80); /* Pastel orange gradient */
+    /*box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);*/
+    font-size: 0.9em;
+    font-weight: 500;
 }
 
 .span-green {
-    padding: 3px 5px;
-    border-radius: 3px;
-    color: white;
+    padding: 6px 10px;
+    /*border-radius: 6px;*/
+    color: #2e7d32; /* Darker text for contrast */
     text-align: center;
-    background: forestgreen;
+    background: linear-gradient(135deg, #c8e6c9, #a5d6a7); /* Pastel green gradient */
+    /*box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);*/
+    font-size: 0.9em;
+    font-weight: 500;
 }
 
 .span-lightblue {
-    padding: 3px 5px;
-    border-radius: 3px;
-    color: white;
+    padding: 6px 10px;
+    /*border-radius: 6px;*/
+    color: #1565c0; /* Darker text for contrast */
     text-align: center;
-    background: lightblue;
+    background: linear-gradient(135deg, #b3e5fc, #81d4fa); /* Pastel light blue gradient */
+    /*box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);*/
+    font-size: 0.9em;
+    font-weight: 500;
 }
 
 .span-lightgray {
-    padding: 3px 5px;
-    border-radius: 3px;
-    color: white;
+    padding: 6px 10px;
+    /*border-radius: 6px;*/
+    color: #424242; /* Darker text for contrast */
     text-align: center;
-    background: lightgray;
+    background: linear-gradient(135deg, #e0e0e0, #cfd8dc); /* Pastel light gray gradient */
+    /*box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);*/
+    font-size: 0.9em;
+    font-weight: 500;
 }
