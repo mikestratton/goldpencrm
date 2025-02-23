@@ -22,7 +22,7 @@
     </head>
     <x-app-layout>
         <x-slot name="header">
-            <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">Sales AI</h1>
+            <h1 class="text-2xl font-semibold dark-gold-font dark:text-white">Sales AI</h1>
         </x-slot>
 
         <div class="py-4">

@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">Dashboard</h1>
+        <h1 class="text-2xl font-semibold dark-gold-font dark:text-white">Dashboard</h1>
     </x-slot>
 
     <div class="py-4">
@@ -49,5 +49,8 @@
             </div>
         </div>
     </div>
-
+    <footer class="py-16 text-center text-sm text-black dark:text-white/70">
+        Crafted with <span style="color:darkred; text-decoration:underline;">❤</span> by <a
+            href="https://mikestratton.net" target="_blank"><span style="color:darkred; text-decoration:underline;">mikestratton.net</span></a>
+    </footer>
 </x-app-layout>

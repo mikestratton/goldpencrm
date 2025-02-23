@@ -23,7 +23,7 @@
     </head>
     <x-app-layout>
         <x-slot name="header">
-            <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">Pitches
+            <h1 class="text-2xl font-semibold dark-gold-font dark:text-white">Pitches
 
                 <span style="float:right; margin-top:-8px;">
                 <a href="{{ route('salesai') }}" class="inline-flex items-center px-4 py-2 gold-link border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest transition ease-in-out duration-150">
