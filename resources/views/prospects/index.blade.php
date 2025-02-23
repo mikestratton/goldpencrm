@@ -144,7 +144,7 @@
 
         <footer class="py-16 text-center text-sm text-black dark:text-white/70">
             Crafted with <span style="color:darkred; text-decoration:underline;">❤</span> by <a
-                href="https://mikestratton.net" target="_blank"><span style="color:darkred; text-decoration:underline;">mikestratton.net</span</a>
+                href="https://mikestratton.net" target="_blank"><span style="color:darkred; text-decoration:underline;">mikestratton.net</span></a>
         </footer>
     </x-app-layout>
 </html>
