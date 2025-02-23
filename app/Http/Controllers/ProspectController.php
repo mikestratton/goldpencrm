@@ -18,15 +18,25 @@ class ProspectController extends Controller
      */
     public function index(Request $request)
     {
-        $perPage = $request->input('perPage', 20);
-        $sort = $request->input('sort', 'name_last');
-        $direction = $request->input('direction', 'asc');
-
-        $prospects = Prospect::where('user_id', auth()->id())
-            ->orderBy($sort, $direction)
-            ->paginate($perPage)
-            ->withQueryString();
-
+        $query = Prospect::where('user_id', auth()->id());
+        
+        if ($request->has('search')) {
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('name_first', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('name_last', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('email', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('phone', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('company', 'LIKE', "%{$searchTerm}%");
+            });
+        }
+        
+        // Keep existing sorting logic
+        $sort = $request->get('sort', 'created_at');
+        $direction = $request->get('direction', 'desc');
+        
+        $prospects = $query->orderBy($sort, $direction)->paginate(10);
+        
         return view('prospects.index', compact('prospects', 'sort', 'direction'));
     }
 

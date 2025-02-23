@@ -23,23 +23,41 @@
     </head>
     <x-app-layout>
         <x-slot name="header">
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Contacts') }}
-                <span style="float:right; margin-top:-8px;">
-                <a href="{{ route('prospects.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707L13 9.293V13a1 1 0 11-2 0V9.293L6.293 12.707a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414z" clip-rule="evenodd" />
-                </svg>
-                New Contact
-            </a>
-            </span>
-            </h2>
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">Contacts</h1>
 
+                <div class="flex items-center gap-4 flex-1 max-w-2xl mx-4">
+                    <form class="small-form" action="{{ route('prospects.index') }}" method="GET" class="flex-1 flex gap-2">
+                        <input type="text"
+                               name="search"
+                               placeholder="Search contacts..."
+                               value="{{ request('search') }}"
+                               class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-[#314f68] dark:bg-[#223749] dark:text-white focus:ring-blue-500 focus:border-blue-500">
+
+                        <button type="submit"
+                                class="inline-flex items-center px-4 py-2 gold-link border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest transition ease-in-out duration-150">
+                            Search
+                        </button>
+
+                        @if(request('search'))
+                            <a href="{{ route('prospects.index') }}"
+                               class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
+                                Clear
+                            </a>
+                        @endif
+                    </form>
+                </div>
+
+                <a href="{{ route('prospects.create') }}"
+                   class="inline-flex items-center px-4 py-2 gold-link border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest transition ease-in-out duration-150">
+                    New Contact
+                </a>
+            </div>
         </x-slot>
 
         <div class="py-4">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         @if($prospects)
                             <table id="customers">
@@ -56,9 +74,9 @@
                                             @endif
                                         </a>
                                     </th>
-                                    <th class="hidden sm:table-cell">Company</th>
-                                    <th class="hidden lg:table-cell">Email</th>
-                                    <th class="hidden lg:table-cell">Phone</th>
+                                    <th class="hidden sm:table-cell">Title</th>
+                                    <th class="hidden lg:table-cell">Message</th>
+                                    <th class="hidden lg:table-cell">Type</th>
                                     <th>
                                         <a href="{{ route('prospects.index', ['sort' => 'status', 'direction' => $direction === 'asc' ? 'desc' : 'asc']) }}" class="flex items-center">
                                             Status
@@ -74,7 +92,7 @@
                                 @foreach($prospects as $prospect)
                                     <tr>
                                         <td><a href="{{ route('prospects.edit', $prospect) }}"
-                                               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
+                                               class="gold-link text-white py-1 px-1">
                                             {{$prospect->id}}
                                             </a></td>
                                         <td class="hidden sm:table-cell">{{ $prospect->name_first }}</td>
@@ -102,7 +120,7 @@
                                             <form class="small-form" action="{{ route('prospects.destroy', $prospect) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                                                <button type="submit" class="gold-link text-white py-1 px-2 rounded"
                                                         onclick="return confirm('Are you sure you want to delete this prospect?')">
                                                     x
                                                 </button>
@@ -112,9 +130,9 @@
                                 @endforeach
                             </table>
 
-
-
-                            {{ $prospects->links() }}
+                            <div class="mt-4">
+                                {{ $prospects->appends(request()->except('page'))->links() }}
+                            </div>
                         @else
                             <p>No results found.</p>
                         @endif

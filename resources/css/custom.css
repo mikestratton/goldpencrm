@@ -18,7 +18,7 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: rgb(59 130 246);
+    background-color: rgb(204 153 51);
     color: white;
     border-right: white thin solid;
 }
@@ -176,4 +176,20 @@ td span {
     /*box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);*/
     font-size: 0.9em;
     font-weight: 500;
+}
+
+.gold-link {
+    background-color: rgb(204 153 51);
+}
+
+.gold-link:hover {
+    background-color: rgb(255 204 0);
+}
+
+.gold-border {
+    border-color: rgb(204 153 51);
+}
+
+.gold-border:hover {
+    border-color: rgb(255 204 0);
 }

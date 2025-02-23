@@ -17,10 +17,29 @@ class NoteController extends Controller
      */
     public function index(Request $request)
     {
-        $perPage = $request->input('perPage', 20); // Get the number of items per page from the request or use a default
-        $notes = Note::where('user_id', auth()->id())->paginate($perPage);
-
-        return view('notes.index', compact('notes'));
+        $query = Note::with(['prospect', 'ai_response'])
+            ->where('user_id', auth()->id());
+        
+        if ($request->has('search')) {
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('title', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('body', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('type_of_contact', 'LIKE', "%{$searchTerm}%")
+                  ->orWhereHas('prospect', function($q) use ($searchTerm) {
+                      $q->where('name_first', 'LIKE', "%{$searchTerm}%")
+                        ->orWhere('name_last', 'LIKE', "%{$searchTerm}%");
+                  });
+            });
+        }
+        
+        // Keep existing sorting logic if you have it
+        $sort = $request->get('sort', 'created_at');
+        $direction = $request->get('direction', 'desc');
+        
+        $notes = $query->orderBy($sort, $direction)->paginate(10);
+        
+        return view('notes.index', compact('notes', 'sort', 'direction'));
     }
 
     /**

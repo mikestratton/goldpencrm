@@ -38,7 +38,9 @@
                                 <textarea name="prompt" id="prompt" class="form-control" rows="4" required>{{ old('prompt') }}</textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Get Response</button>
+                            <button type="submit"
+                                    class="inline-flex items-center px-4 py-2 gold-link border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest transition ease-in-out duration-150">
+                                Get Response</button>
                         </form>
 
                         @if (isset($response))
@@ -49,7 +51,8 @@
                                     <textarea name="edited_response" id="edited_response" class="form-control" rows="4" required>{{ $response }}</textarea>
                                     <input type="hidden" name="original_prompt" value="{{ $original_prompt }}">
                                 </div>
-                                <button type="submit" class="btn btn-success">Save Response</button>
+                                <button type="submit" class="inline-flex items-center px-4 py-2 gold-link border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest transition ease-in-out duration-150">
+                                    Save Response</button>
                             </form>
                         @endif
                     </div>
