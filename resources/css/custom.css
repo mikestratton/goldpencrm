@@ -193,3 +193,9 @@ td span {
 .gold-border:hover {
     border-color: rgb(255 204 0);
 }
+
+.goldpen-logo {
+    margin-right:-20px;
+    margin-left:20px;
+    margin-top:24px;
+}
