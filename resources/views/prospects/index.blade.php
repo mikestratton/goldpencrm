@@ -71,7 +71,7 @@
                                             @if($sort === 'name_last')
                                                 {!! $direction === 'asc' ? '↑' : '↓' !!}
                                             @else
-                                                <span class="text-gray-400 ml-1">↕</span>
+                                                <span class="text-white ml-1">↕</span>
                                             @endif
                                         </a>
                                     </th>
@@ -79,12 +79,12 @@
                                     <th class="hidden lg:table-cell">Message</th>
                                     <th class="hidden lg:table-cell">Type</th>
                                     <th>
-                                        <a href="{{ route('prospects.index', ['sort' => 'status', 'direction' => $direction === 'asc' ? 'desc' : 'asc']) }}" class="flex items-center">
+                                        <a href="{{ route('prospects.index', ['sort' => 'status', 'direction' => $direction === 'desc' ? 'asc' : 'desc']) }}" class="flex items-center">
                                             Status
                                             @if($sort === 'status')
                                                 {!! $direction === 'asc' ? '↑' : '↓' !!}
                                             @else
-                                                <span class="text-gray-400 ml-1">↕</span>
+                                                <span class="text-white ml-1">↕</span>
                                             @endif
                                         </a>
                                     </th>

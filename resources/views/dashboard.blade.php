@@ -14,19 +14,23 @@
                     3. Automatically create a new sales pitch with our AI sales pitch generator and then attach the pitch when it is used in a note. <br>
                     4. Review your statistics to view the effectiveness of your sales pitches.
 
-
                     <script type="text/javascript">
-                        google.charts.load('current', {'packages':['bar']});
+                        google.charts.load('current', {'packages':['corechart']}); // Changed to corechart
                         google.charts.setOnLoadCallback(drawChart);
 
                         function drawChart() {
                             var data = google.visualization.arrayToDataTable([
-                                ['Pitch ID & Description', 'Effectiveness'],
-                                @foreach($stats as $stat)
-                                    ['ID:{{ $stat->ai_response_id }} {{ Str::limit(ltrim($stat->aiResponse->response, '"'), 15) }}', {{ $stat->total_count > 0 ? number_format(($stat->total_status / ($stat->total_count * 4)) * 100, 1) : 0 }}],
-                                // ['Pitch 2', 23],
-                                // ['Pitch 3', 72],
-                                // ['Pitch 4', 88]
+                                ['Pitch ID & Description', 'Effectiveness', { role: 'style' }],
+                                    @php
+                                        $colors = ['#CC9933', '#FFCC00', '#ffe680'];
+                                        $colorIndex = 0;
+                                    @endphp
+                                    @foreach($stats as $stat)
+                                    @php
+                                        $color = $colors[$colorIndex % 3];
+                                        $colorIndex++;
+                                    @endphp
+                                ['ID:{{ $stat->ai_response_id }} {{ Str::limit(ltrim($stat->aiResponse->response, '"'), 35) }}', {{ $stat->total_count > 0 ? number_format(($stat->total_status / ($stat->total_count * 4)) * 100, 1) : 0 }}, 'color: {{ $color }}'],
                                 @endforeach
                             ]);
 
@@ -35,14 +39,14 @@
                                     title: 'Pitch Performance',
                                     subtitle: 'Effectiveness of a pitch when used on a prospect(note).',
                                 },
-                                colors: ['#CC9933', '#FFCC00', '#ffe680']
                             };
 
-                            var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+                            var chart = new google.visualization.BarChart(document.getElementById('columnchart_material')); // Changed to BarChart
 
-                            chart.draw(data, google.charts.Bar.convertOptions(options));
+                            chart.draw(data, options);
                         }
                     </script>
+
                     <br><br>
                     <div id="columnchart_material" style="width: auto; height: 500px;"></div>
                 </div>
