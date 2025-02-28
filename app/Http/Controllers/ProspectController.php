@@ -19,7 +19,7 @@ class ProspectController extends Controller
     public function index(Request $request)
     {
         $query = Prospect::where('user_id', auth()->id());
-        
+
         if ($request->has('search')) {
             $searchTerm = $request->search;
             $query->where(function($q) use ($searchTerm) {
@@ -30,13 +30,13 @@ class ProspectController extends Controller
                   ->orWhere('company', 'LIKE', "%{$searchTerm}%");
             });
         }
-        
+
         // Keep existing sorting logic
         $sort = $request->get('sort', 'created_at');
-        $direction = $request->get('direction', 'desc');
-        
-        $prospects = $query->orderBy($sort, $direction)->paginate(10);
-        
+        $direction = $request->get('direction', 'asc');
+
+        $prospects = $query->orderBy($sort, $direction)->paginate(15);
+
         return view('prospects.index', compact('prospects', 'sort', 'direction'));
     }
 

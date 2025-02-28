@@ -15,7 +15,7 @@ class PitchController extends Controller
      */
     public function index(Request $request)
     {
-        $perPage = $request->input('perPage', 20);
+        $perPage = $request->input('perPage', 15);
         $pitches = AiResponse::where('user_id', auth()->id())->paginate($perPage);
         return view('salesai.index', compact('pitches'));
     }

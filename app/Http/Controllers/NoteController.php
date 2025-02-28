@@ -19,7 +19,7 @@ class NoteController extends Controller
     {
         $query = Note::with(['prospect', 'ai_response'])
             ->where('user_id', auth()->id());
-        
+
         if ($request->has('search')) {
             $searchTerm = $request->search;
             $query->where(function($q) use ($searchTerm) {
@@ -32,13 +32,13 @@ class NoteController extends Controller
                   });
             });
         }
-        
+
         // Keep existing sorting logic if you have it
         $sort = $request->get('sort', 'created_at');
         $direction = $request->get('direction', 'desc');
-        
-        $notes = $query->orderBy($sort, $direction)->paginate(10);
-        
+
+        $notes = $query->orderBy($sort, $direction)->paginate(15);
+
         return view('notes.index', compact('notes', 'sort', 'direction'));
     }
 
