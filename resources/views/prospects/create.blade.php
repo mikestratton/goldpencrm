@@ -24,7 +24,7 @@
     <x-app-layout>
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Create New Prospect') }}
+                {{ __('Create New Contact') }}
             </h2>
         </x-slot>
 
@@ -88,7 +88,7 @@
 
                             <button type="submit"
                                     class="inline-flex items-center px-4 py-2 gold-link border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest transition ease-in-out duration-150">
-                                Create Prospect</button>
+                                Create Contact</button>
                         </form>
                     </div>
                 </div>
