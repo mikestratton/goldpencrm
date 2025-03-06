@@ -39,6 +39,7 @@
                                     title: 'Pitch Performance',
                                     subtitle: 'Effectiveness of a pitch when used on a prospect(note).',
                                 },
+                                colors: ['#CC9933']
                             };
 
                             var chart = new google.visualization.BarChart(document.getElementById('columnchart_material')); // Changed to BarChart
