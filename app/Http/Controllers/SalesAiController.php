@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use OpenAI\Laravel\Facades\OpenAI;
 
 class SalesAiController extends Controller
 {
@@ -21,10 +22,17 @@ class SalesAiController extends Controller
 
         $prompt = $request->input('prompt');
 
-        $response = Http::withToken(config('services.openai.secret'))
-            ->post('https://api.openai.com/v1/chat/completions',
-                [
-                    "model" => "gpt-4o-mini",
+//        $response = OpenAI::chat()->create([
+//            'model' => 'gpt-3.5-turbo',
+//            'messages' => [
+//                ['role' => 'user', 'content' => 'Hello!'],
+//            ],
+//        ]);
+//
+//        $response->choices[0]->message->content; // Hello! How can I assist you today?
+
+        $response = OpenAI::chat()->create([
+                    "model" => "gpt-3.5-turbo",
                     "messages" => [
                         [
                             "role" => "system",
@@ -35,7 +43,7 @@ class SalesAiController extends Controller
                             "content" => $prompt,
                         ],
                     ],
-                ])->json('choices.0.message.content');
+                ])->choices[0]->message->content;
 
         return view('salesai', ['response' => $response, 'original_prompt' => $prompt]);
     }
