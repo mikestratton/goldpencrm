@@ -98,7 +98,6 @@ class SalesAiController extends Controller
 
         $pitch->update($validated);
 
-        return redirect()->route('salesai')
-            ->with('success', 'Pitch updated successfully!');
+        return redirect()->route('salesai.edit', $pitch);
     }
 }

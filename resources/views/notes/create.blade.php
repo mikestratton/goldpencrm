@@ -23,7 +23,7 @@
     <x-app-layout>
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Create New Note') }}
+                {{ __('Create New Contact') }}
             </h2>
         </x-slot>
 
@@ -45,7 +45,7 @@
                             @csrf
 
                             <div class="mb-3">
-                                <label for="status" class="form-label">Prospect</label>
+                                <label for="status" class="form-label">Contact</label>
                                 <select name="prospect_id" id="prospect_id" class="form-select">
                                     @foreach($prospects as $prospect)
                                         <option value="{{ $prospect->id }}" {{ old('prospect') == $prospect->id ? 'selected' : '' }}>{{ $prospect->name_last }}, {{ $prospect->name_first }} (ID {{ $prospect->id }})</option>

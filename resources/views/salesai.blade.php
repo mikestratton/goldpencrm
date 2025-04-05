@@ -32,13 +32,13 @@
                         <form action="{{ route('salesai.process') }}" method="POST">
                             @csrf
                             <div class="mb-3">
-                                <label for="prompt" class="form-label">Enter Prompt:</label>
+                                <label for="prompt" class="form-label">Enter Sales Prompt:</label>
                                 <textarea name="prompt" id="prompt" class="form-control" rows="4" required>{{ old('prompt') }}</textarea>
                             </div>
 
                             <button type="submit"
                                     class="inline-flex items-center px-4 py-2 gold-link border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest transition ease-in-out duration-150">
-                                Get Response</button>
+                                Get Sales Pitch</button>
                         </form>
 
                         @if (isset($response))
