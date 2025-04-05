@@ -30,7 +30,7 @@
                                         $color = $colors[$colorIndex % 3];
                                         $colorIndex++;
                                     @endphp
-                                ['ID:{{ $stat->ai_response_id }} {{ Str::limit(ltrim($stat->aiResponse->response, '"'), 45) }}', {{ $stat->total_count > 0 ? number_format(($stat->total_status / ($stat->total_count * 4)) * 100, 1) : 0 }}, 'color: {{ $color }}'],
+                                ['ID:{{ $stat->ai_response_id }} {{ Str::limit(ltrim($stat->aiResponse->response, '"'), 35) }}', {{ $stat->total_count > 0 ? number_format(($stat->total_status / ($stat->total_count * 4)) * 100, 1) : 0 }}, 'color: {{ $color }}'],
                                 @endforeach
                             ]);
 
