@@ -33,7 +33,7 @@ class ProspectController extends Controller
 
         // Keep existing sorting logic
         $sort = $request->get('sort', 'created_at');
-        $direction = $request->get('direction', 'asc');
+        $direction = $request->get('direction', 'desc');
 
         $prospects = $query->orderBy($sort, $direction)->paginate(15);
 
