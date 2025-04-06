@@ -66,7 +66,7 @@
                                     <th>ID</th>
                                     <th class="hidden sm:table-cell">First</th>
                                     <th class="hidden sm:table-cell">
-                                        <a href="{{ route('prospects.index', ['sort' => 'name_last', 'direction' => $direction === 'asc' ? 'desc' : 'asc']) }}" class="flex items-center">
+                                        <a href="{{ route('prospects.index', ['sort' => 'name_last', 'direction' => $direction === 'desc' ? 'asc' : 'desc']) }}" class="flex items-center">
                                             Last
                                             @if($sort === 'name_last')
                                                 {!! $direction === 'asc' ? '↑' : '↓' !!}
