@@ -22,15 +22,6 @@ class SalesAiController extends Controller
 
         $prompt = $request->input('prompt');
 
-//        $response = OpenAI::chat()->create([
-//            'model' => 'gpt-3.5-turbo',
-//            'messages' => [
-//                ['role' => 'user', 'content' => 'Hello!'],
-//            ],
-//        ]);
-//
-//        $response->choices[0]->message->content; // Hello! How can I assist you today?
-
         $response = OpenAI::chat()->create([
                     "model" => "gpt-3.5-turbo",
                     "messages" => [
@@ -55,7 +46,7 @@ class SalesAiController extends Controller
             'original_prompt' => 'required|string',
         ]);
         $user_id = auth()->id();
-//        dd($user_id);
+
         AiResponse::create([
             'user_id' => $user_id,
             'prompt' => $request->input('original_prompt'),
@@ -67,7 +58,6 @@ class SalesAiController extends Controller
 
     public function destroy(AiResponse $aiResponse)
     {
-        // Check if the user owns this response
         if ($aiResponse->user_id !== auth()->id()) {
             abort(403);
         }
