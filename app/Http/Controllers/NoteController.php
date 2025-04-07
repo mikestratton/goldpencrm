@@ -33,7 +33,6 @@ class NoteController extends Controller
             });
         }
 
-        // Keep existing sorting logic if you have it
         $sort = $request->get('sort', 'created_at');
         $direction = $request->get('direction', 'desc');
 
@@ -59,14 +58,13 @@ class NoteController extends Controller
     {
         $validatedData = $request->validate([
             'prospect_id' => 'required|exists:prospects,id',
-            'ai_response_id' => 'nullable|exists:ai_responses,id', // Changed from pitches to ai_responses
+            'ai_response_id' => 'nullable|exists:ai_responses,id',
             'title' => 'required|string|max:255',
             'body' => 'required|string',
             'type_of_contact' => 'nullable|string|max:255',
-            'status' => 'required|integer|in:0,1,2,3,4', // Ensure status is valid
+            'status' => 'required|integer|in:0,1,2,3,4',
         ]);
 
-        // Create a new Note instance and fill it with the validated data
         $note = new Note();
         $note->user_id = $request->user()->id;
         $note->prospect_id = $validatedData['prospect_id'];
@@ -75,10 +73,8 @@ class NoteController extends Controller
         $note->type_of_contact = $validatedData['type_of_contact'];
         $note->ai_response_id = $validatedData['ai_response_id'] ?? null;
 
-        // Save the note to the database
         $note->save();
 
-        // Update the prospect table status
         $prospect = Prospect::find($validatedData['prospect_id']);
         $prospect->status = $validatedData['status'];
         $prospect->save();
@@ -94,7 +90,6 @@ class NoteController extends Controller
             );
         }
 
-        // Redirect to a success page or back to the form
         return redirect()->route('notes.index')->with('success', 'Note created successfully.');
 
     }
@@ -137,13 +132,11 @@ class NoteController extends Controller
             'body' => 'required|string',
             'type_of_contact' => 'required|string|max:255',
             'ai_response_id' => 'nullable|exists:ai_responses,id',
-            'status' => 'required|integer|min:0|max:4'  // Add status validation
+            'status' => 'required|integer|min:0|max:4'
         ]);
 
-        // Update the note
         $note->update($validated);
 
-        // Update the prospect's status
         $prospect = Prospect::findOrFail($validated['prospect_id']);
         if ($prospect->user_id === auth()->id()) {
             $prospect->update(['status' => $validated['status']]);
@@ -158,7 +151,6 @@ class NoteController extends Controller
      */
     public function destroy(Note $note)
     {
-        // Check if the user owns this note
         if ($note->user_id !== auth()->id()) {
             abort(403);
         }

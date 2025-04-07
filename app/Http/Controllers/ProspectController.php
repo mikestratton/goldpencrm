@@ -31,7 +31,6 @@ class ProspectController extends Controller
             });
         }
 
-        // Keep existing sorting logic
         $sort = $request->get('sort', 'created_at');
         $direction = $request->get('direction', 'desc');
 
@@ -53,8 +52,6 @@ class ProspectController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-//        dd($request->user()->id);
-
         $validatedData = $request->validate([
             'name_first' => 'required|string|max:255',
             'name_last' => 'required|string|max:255',
@@ -67,8 +64,6 @@ class ProspectController extends Controller
 
         $user_id = $request->user()->id;
         $validatedData['user_id'] = $user_id; // Add user_id
-
-//        dd($validatedData);
 
         Prospect::create($validatedData);
 
@@ -89,7 +84,6 @@ class ProspectController extends Controller
      */
     public function edit(Prospect $prospect)
     {
-        // Check if the user owns this prospect
         if ($prospect->user_id !== auth()->id()) {
             abort(403);
         }
@@ -102,7 +96,6 @@ class ProspectController extends Controller
      */
     public function update(Request $request, Prospect $prospect)
     {
-        // Check if the user owns this prospect
         if ($prospect->user_id !== auth()->id()) {
             abort(403);
         }
@@ -128,7 +121,6 @@ class ProspectController extends Controller
      */
     public function destroy(Prospect $prospect)
     {
-        // Check if the user owns this prospect
         if ($prospect->user_id !== auth()->id()) {
             abort(403);
         }
