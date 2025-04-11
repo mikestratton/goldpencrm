@@ -13,7 +13,10 @@
                     2. Create a note when you have made contact with a specific customer to capture details and update status.<br>
                     3. Automatically create a new sales pitch with our AI sales pitch generator and then attach the pitch when it is used in a note. <br>
                     4. Review your statistics to view the effectiveness of your sales pitches.
-
+                    <br><br>
+                    <p class="text-lg">You currently have <a class="font-bold text-custom-gold" href="/prospects">{{ $contacts }} contacts</a>,
+                        <a class="font-bold text-custom-gold" href="/notes">{{ $notes }} notes</a> and
+                        <a class="font-bold text-custom-gold" href="/pitches">{{ $pitches }} pitches</a>.</p>
                     <script type="text/javascript">
                         google.charts.load('current', {'packages':['corechart']}); // Changed to corechart
                         google.charts.setOnLoadCallback(drawChart);
